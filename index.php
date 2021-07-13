@@ -5,7 +5,7 @@
 <h1>Test</h1>
 
 <?php
-echo "Hello World!, how ";
+echo "Hello World!, how r u";
 ?>
 
 </body>
