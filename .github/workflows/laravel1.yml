@@ -16,6 +16,6 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
           username: "root"
-          host: "	52.66.108.179:57650"
+          host: "52.66.108.179:57650"
           password: "12345"
           script: 'cd /var/www/html/haries-dev.github.io && ./deployer.sh' #cd /var/www/html/MerqataAPI && ./server_deploy.sh
