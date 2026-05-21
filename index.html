@@ -3,253 +3,1007 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haries Palaniappan | Cybersecurity Analyst</title>
-
+<title>Haries Palaniappan — Security Analyst & Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-
-/* =============================
-   ROOT THEME VARIABLES
-============================= */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:#03040a;color:#e2e8f0;overflow-x:hidden;line-height:1.6}
 :root{
-    --bg-dark:#0b0f17;
-    --bg-card:rgba(255,255,255,0.04);
-    --primary:#00e0b8;
-    --secondary:#3a86ff;
-    --accent:#ff003c;
-    --text-main:#d6e2ff;
-    --text-muted:#7f8db3;
-    --border-glow:0 0 25px rgba(0,224,184,0.25);
+  --g1:linear-gradient(135deg,#6366f1,#06b6d4);
+  --accent:#6366f1;--cyan:#06b6d4;--violet:#8b5cf6;
+  --t1:#f8fafc;--t2:#cbd5e1;--t3:#64748b;
+  --glass:rgba(255,255,255,.03);--glass2:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.14);
+  --r1:12px;--r2:20px;--r3:28px;
 }
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#03040a}::-webkit-scrollbar-thumb{background:#6366f1;border-radius:2px}
+::selection{background:rgba(99,102,241,.25)}
 
-/* =============================
-   GLOBAL RESET
-============================= */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Fira Code", monospace;
+/* ── BACKGROUND ─────────────────────────────────────── */
+.orb{position:fixed;border-radius:50%;filter:blur(90px);opacity:.12;pointer-events:none;z-index:0}
+.o1{width:700px;height:700px;background:radial-gradient(circle,#6366f1,transparent);top:-200px;left:-200px;animation:o1 22s ease-in-out infinite}
+.o2{width:600px;height:600px;background:radial-gradient(circle,#06b6d4,transparent);bottom:-150px;right:-150px;animation:o2 28s ease-in-out infinite}
+.o3{width:450px;height:450px;background:radial-gradient(circle,#8b5cf6,transparent);top:40%;left:50%;transform:translate(-50%,-50%);animation:o3 19s ease-in-out infinite}
+@keyframes o1{0%,100%{transform:translate(0,0)}33%{transform:translate(80px,-60px)}66%{transform:translate(-40px,80px)}}
+@keyframes o2{0%,100%{transform:translate(0,0)}33%{transform:translate(-70px,50px)}66%{transform:translate(60px,-80px)}}
+@keyframes o3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.3);opacity:.06}}
+.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(99,102,241,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.022) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+#cvs{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1}
+
+/* ── GLASS ─────────────────────────────────────────── */
+.gl{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.38)}
+
+/* ── NAV ───────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 6%;background:rgba(3,4,10,.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.05);transition:.3s}
+.logo{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-1px}
+.navl{display:flex;gap:1.8rem;list-style:none}
+.navl a{color:var(--t2);text-decoration:none;font-size:.84rem;font-weight:500;transition:color .2s;position:relative}
+.navl a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--g1);transition:.3s;border-radius:1px}
+.navl a:hover{color:var(--t1)}.navl a:hover::after{width:100%}
+.ncta{padding:7px 20px;background:var(--g1);color:#fff !important;border-radius:100px;font-weight:600 !important}.ncta::after{display:none !important}.ncta:hover{opacity:.88}
+
+/* ── HERO ───────────────────────────────────────────── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 6%;padding-top:64px}
+.hc{max-width:820px;z-index:1}
+.hbadge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:rgba(99,102,241,.09);border:1px solid rgba(99,102,241,.25);border-radius:100px;font-size:.77rem;font-weight:600;color:#a5b4fc;margin-bottom:22px;letter-spacing:.5px}
+.hdot{width:6px;height:6px;background:#6366f1;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.hname{font-family:'Space Grotesk',sans-serif;font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:800;line-height:1.0;letter-spacing:-3px;margin-bottom:10px;background:linear-gradient(135deg,#f8fafc 0%,#cbd5e1 60%,#94a3b8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.htitle{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.1rem,2.4vw,1.6rem);font-weight:500;margin-bottom:18px;min-height:2rem;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdesc{font-size:1.03rem;color:var(--t2);max-width:580px;margin-bottom:36px;line-height:1.78}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:50px}
+.bp{padding:13px 28px;background:var(--g1);color:#fff;border:none;border-radius:100px;font-size:.93rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.2s;box-shadow:0 0 30px rgba(99,102,241,.28)}
+.bp:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(99,102,241,.48)}
+.bs{padding:13px 28px;background:transparent;color:var(--t1);border:1px solid var(--border2);border-radius:100px;font-size:.93rem;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.2s}
+.bs:hover{background:var(--glass2);border-color:rgba(99,102,241,.45);transform:translateY(-2px)}
+.hstats{display:flex;gap:40px;flex-wrap:wrap}
+.hst .n{font-family:'Space Grotesk',sans-serif;font-size:2.1rem;font-weight:700;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.hst .l{font-size:.73rem;color:var(--t3);margin-top:5px;letter-spacing:.4px}
+
+/* ── SECTIONS ──────────────────────────────────────── */
+section{padding:96px 6%;position:relative}
+.slbl{font-size:.71rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.stitle{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;letter-spacing:-1.5px;color:var(--t1);margin-bottom:14px;line-height:1.1}
+.sdesc{font-size:1rem;color:var(--t2);max-width:520px;line-height:1.75;margin-bottom:56px}
+.sh{margin-bottom:56px}
+.div{height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.16),rgba(6,182,212,.16),transparent);margin:0 6%}
+
+/* ── ICON SYSTEM ───────────────────────────────────── */
+.ibox{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ibox svg{width:18px;height:18px}
+/* company letter badge */
+.ibadge{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:800;letter-spacing:-.5px}
+
+/* ── ABOUT ──────────────────────────────────────────── */
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.acard{padding:38px;border-radius:var(--r3)}
+.atxt{font-size:1.01rem;color:var(--t2);line-height:1.8;margin-bottom:20px}
+.ahi{display:flex;flex-direction:column;gap:13px}
+.ahi-item{display:flex;align-items:center;gap:12px;font-size:.87rem;color:var(--t2)}
+.ahi-ic{width:32px;height:32px;border-radius:9px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ahi-ic svg{width:15px;height:15px;color:#a5b4fc}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.sbox{padding:20px;border-radius:var(--r2);background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);text-align:center;transition:.2s}
+.sbox:hover{transform:translateY(-4px)}
+.sbox .n{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:700;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1}
+.sbox .l{font-size:.7rem;color:var(--t3);margin-top:5px}
+
+/* ── TIMELINE ───────────────────────────────────────── */
+.tl{position:relative;padding-left:36px}
+.tl::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(99,102,241,.4) 10%,rgba(6,182,212,.4) 90%,transparent)}
+.ti{position:relative;margin-bottom:24px;opacity:0;transform:translateX(-18px);transition:.5s}
+.ti.vis{opacity:1;transform:translateX(0)}
+.tdot{position:absolute;left:-31px;top:22px;width:11px;height:11px;border-radius:50%;background:var(--g1);box-shadow:0 0 12px rgba(99,102,241,.55)}
+.ec{padding:24px 28px;border-radius:var(--r2);transition:.2s}
+.ec:hover{transform:translateX(5px);border-color:rgba(99,102,241,.25) !important}
+.eh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:3px}
+.etitle{font-family:'Space Grotesk',sans-serif;font-size:1.06rem;font-weight:600;color:var(--t1)}
+.ebadge{padding:3px 11px;border-radius:100px;font-size:.67rem;font-weight:700;letter-spacing:.5px;white-space:nowrap;flex-shrink:0}
+.bnow{background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.25);color:#34d399}
+.bpast{background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.18);color:#a5b4fc}
+.bint{background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.18);color:#67e8f9}
+.eco{font-size:.87rem;font-weight:500;color:var(--cyan);margin-bottom:3px}
+.emeta{font-size:.77rem;color:var(--t3);margin-bottom:10px;display:flex;gap:10px;flex-wrap:wrap}
+.edesc{font-size:.87rem;color:var(--t2);line-height:1.72}
+.eskills{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.sc{padding:3px 11px;background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.16);border-radius:100px;font-size:.71rem;color:#a5b4fc;font-weight:500}
+
+/* ── SKILLS ─────────────────────────────────────────── */
+.skillgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px}
+.skcat{padding:24px;border-radius:var(--r2);transition:.2s}
+.skcat:hover{transform:translateY(-4px)}
+.skhdr{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.sknm{font-family:'Space Grotesk',sans-serif;font-size:.93rem;font-weight:600;color:var(--t1)}
+.sktags{display:flex;flex-wrap:wrap;gap:7px}
+.skt{padding:5px 13px;border-radius:8px;font-size:.77rem;font-weight:500;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.065);color:var(--t2);transition:.2s;cursor:default}
+.skt:hover{background:rgba(99,102,241,.09);border-color:rgba(99,102,241,.25);color:var(--t1);transform:translateY(-1px)}
+
+/* ── PROJECTS ───────────────────────────────────────── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(308px,1fr));gap:20px}
+.pcard{padding:24px;border-radius:var(--r2);transition:.3s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g1);transform:scaleX(0);transition:.3s;transform-origin:left}
+.pcard:hover{transform:translateY(-5px);border-color:rgba(99,102,241,.2) !important}
+.pcard:hover::before{transform:scaleX(1)}
+/* category tag row */
+.ptag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:6px;font-size:.68rem;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:12px}
+.ptag svg{width:11px;height:11px}
+.csec{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.18);color:#fca5a5}
+.cos{background:rgba(139,92,246,.07);border:1px solid rgba(139,92,246,.18);color:#c4b5fd}
+.cweb{background:rgba(6,182,212,.07);border:1px solid rgba(6,182,212,.18);color:#67e8f9}
+.cbc{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.18);color:#fcd34d}
+.csp{background:rgba(16,185,129,.07);border:1px solid rgba(16,185,129,.18);color:#6ee7b7}
+.cos2{background:rgba(99,102,241,.07);border:1px solid rgba(99,102,241,.18);color:#a5b4fc}
+.pname{font-family:'Space Grotesk',sans-serif;font-size:.96rem;font-weight:600;color:var(--t1);margin-bottom:5px;line-height:1.3}
+.porg{font-size:.74rem;color:var(--cyan);margin-bottom:9px}
+.pdesc{font-size:.84rem;color:var(--t2);line-height:1.65;margin-bottom:14px;flex:1}
+.ptechs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tt{padding:2px 9px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.065);border-radius:5px;font-size:.69rem;color:var(--t3)}
+/* GitHub link on project cards */
+.plink{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);color:var(--t2);text-decoration:none;font-size:.75rem;font-weight:500;transition:.2s;margin-top:auto}
+.plink:hover{background:rgba(99,102,241,.1);border-color:rgba(99,102,241,.28);color:var(--t1)}
+.plink svg{width:14px;height:14px;flex-shrink:0}
+
+/* ── CERTS ──────────────────────────────────────────── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:17px}
+.crtcard{padding:22px;border-radius:var(--r2);transition:.2s;display:flex;flex-direction:column}
+.crtcard:hover{transform:translateY(-4px);border-color:rgba(6,182,212,.25) !important}
+.cname{font-size:.9rem;font-weight:600;color:var(--t1);margin-bottom:4px;line-height:1.3;margin-top:12px}
+.ciss{font-size:.77rem;color:var(--cyan);margin-bottom:4px}
+.cdate{font-size:.71rem;color:var(--t3);margin-bottom:10px}
+/* credential link */
+.credlink{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:7px;background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.18);color:var(--cyan);text-decoration:none;font-size:.71rem;font-weight:600;transition:.2s;margin-top:auto;width:fit-content}
+.credlink:hover{background:rgba(6,182,212,.14);border-color:rgba(6,182,212,.35)}
+.credlink svg{width:11px;height:11px}
+
+/* ── PUBLICATION ────────────────────────────────────── */
+.pubcard{padding:40px;border-radius:var(--r3);max-width:900px;margin:0 auto;position:relative;overflow:hidden}
+.pubcard::after{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(99,102,241,.06),transparent);border-radius:50%;pointer-events:none}
+.pjour{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18);border-radius:100px;font-size:.75rem;font-weight:600;color:#6ee7b7;margin-bottom:18px}
+.pjour svg{width:14px;height:14px}
+.ptitle2{font-family:'Space Grotesk',sans-serif;font-size:1.38rem;font-weight:600;color:var(--t1);margin-bottom:10px;line-height:1.3}
+.pmeta{font-size:.83rem;color:var(--t3);margin-bottom:18px}
+.pdesc2{font-size:.95rem;color:var(--t2);line-height:1.78;margin-bottom:22px}
+.pfeats{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:9px;margin-top:22px}
+.pfeat{display:flex;align-items:flex-start;gap:7px;font-size:.83rem;color:var(--t2)}
+.pfeat::before{content:'▸';color:var(--cyan);font-size:.72rem;margin-top:3px;flex-shrink:0}
+/* springer link btn */
+.springer-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:100px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.22);color:#6ee7b7;text-decoration:none;font-size:.88rem;font-weight:600;transition:.2s;margin-top:28px}
+.springer-btn:hover{background:rgba(16,185,129,.16);transform:translateY(-2px)}
+.springer-btn svg{width:15px;height:15px}
+
+/* ── AWARDS ─────────────────────────────────────────── */
+.awgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:17px}
+.awcard{padding:20px;border-radius:var(--r2);transition:.2s;display:flex;gap:14px;align-items:flex-start}
+.awcard:hover{transform:translateY(-3px)}
+.awtitle{font-size:.87rem;font-weight:600;color:var(--t1);margin-bottom:3px;line-height:1.3}
+.awiss{font-size:.75rem;color:var(--cyan);margin-bottom:2px}
+.awdate{font-size:.69rem;color:var(--t3);margin-bottom:7px}
+.awdesc{font-size:.79rem;color:var(--t2);line-height:1.55}
+
+/* ── VOLUNTEER ──────────────────────────────────────── */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:17px}
+.vcard{padding:22px;border-radius:var(--r2);transition:.2s}
+.vcard:hover{transform:translateY(-3px)}
+.vrole{font-size:.92rem;font-weight:600;color:var(--t1);margin-bottom:3px}
+.vorg{font-size:.79rem;color:var(--cyan);margin-bottom:5px}
+.vmeta{font-size:.72rem;color:var(--t3);margin-bottom:8px}
+.vdesc{font-size:.82rem;color:var(--t2);line-height:1.6}
+.vcause{display:inline-block;margin-top:9px;padding:3px 9px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.065);border-radius:5px;font-size:.69rem;color:var(--t3)}
+
+/* ── CONTACT ────────────────────────────────────────── */
+#contact{text-align:center;padding:110px 6%}
+.ctcard{max-width:660px;margin:0 auto;padding:52px;border-radius:40px;position:relative;overflow:hidden}
+.ctcard::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(99,102,241,.035),transparent);pointer-events:none}
+.ctlinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+.cl{display:flex;align-items:center;gap:8px;padding:12px 22px;border-radius:var(--r1);border:1px solid var(--border);color:var(--t2);text-decoration:none;font-size:.87rem;font-weight:500;transition:.2s;background:var(--glass)}
+.cl:hover{background:var(--glass2);color:var(--t1);border-color:rgba(99,102,241,.28);transform:translateY(-3px)}
+.cl svg{width:17px;height:17px;flex-shrink:0}
+
+/* ── FOOTER ─────────────────────────────────────────── */
+footer{text-align:center;padding:26px 6%;border-top:1px solid rgba(255,255,255,.05);color:var(--t3);font-size:.79rem}
+footer span{color:#ef4444}
+
+/* ── HERO PHOTO ─────────────────────────────────────── */
+.hero-layout{display:flex;align-items:center;justify-content:space-between;gap:64px;width:100%;max-width:1100px}
+.hero-layout .hc{max-width:580px}
+.hphoto-outer{flex-shrink:0;position:relative;display:flex;align-items:center;justify-content:center}
+.hphoto-ring{position:absolute;inset:-14px;border-radius:50%;background:conic-gradient(from 0deg,#6366f1,#06b6d4,#8b5cf6,#6366f1);animation:phring 7s linear infinite;opacity:.55;filter:blur(2px)}
+.hphoto-ring2{position:absolute;inset:-28px;border-radius:50%;border:1px solid rgba(99,102,241,.15);animation:phring 18s linear infinite reverse}
+@keyframes phring{to{transform:rotate(360deg)}}
+.hphoto-wrap{position:relative;width:260px;height:260px;border-radius:50%;z-index:1}
+.hphoto-wrap img{width:260px;height:260px;border-radius:50%;object-fit:cover;object-position:center top;display:block;border:4px solid #03040a;position:relative;z-index:1}
+.hphoto-glow{position:absolute;inset:-6px;border-radius:50%;background:var(--g1);opacity:.18;filter:blur(18px)}
+
+/* ── SCROLL ANIMATION ───────────────────────────────── */
+.fi{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.fi.vis{opacity:1;transform:translateY(0)}
+.fi.d1{transition-delay:.1s}.fi.d2{transition-delay:.2s}.fi.d3{transition-delay:.3s}
+
+/* footer year not red */
+footer #yr{color:inherit}
+
+@media(max-width:900px){
+  .hero-layout{flex-direction:column-reverse;gap:28px;text-align:center}
+  .hero-layout .hc{max-width:100%}
+  .hbtns{justify-content:center}
+  .hstats{justify-content:center}
+  .hphoto-wrap,.hphoto-wrap img{width:170px;height:170px}
+  .hphoto-ring{inset:-10px}.hphoto-ring2{inset:-20px}
 }
-
-body{
-    background:var(--bg-dark);
-    color:var(--text-main);
-    overflow-x:hidden;
+@media(max-width:768px){
+  .navl{display:none}
+  .ag{grid-template-columns:1fr}
+  .ctcard{padding:28px 20px}
+  section{padding:60px 5%}
+  .div{margin:0 5%}
 }
-
-/* Animated cyber grid background */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:
-        linear-gradient(rgba(0,224,184,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,224,184,0.05) 1px, transparent 1px);
-    background-size:50px 50px;
-    z-index:-2;
-}
-
-/* subtle animated pulse */
-body::after{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:radial-gradient(circle at 50% 50%, rgba(0,224,184,0.08), transparent 70%);
-    animation:pulse 6s infinite alternate;
-    z-index:-1;
-}
-
-@keyframes pulse{
-    from{opacity:0.2;}
-    to{opacity:0.6;}
-}
-
-/* =============================
-   NAVBAR
-============================= */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 8%;
-    backdrop-filter:blur(12px);
-    background:rgba(0,0,0,0.4);
-    border-bottom:1px solid rgba(0,224,184,0.2);
-}
-
-.logo{
-    font-weight:bold;
-    letter-spacing:2px;
-    color:var(--primary);
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:30px;
-}
-
-nav a{
-    text-decoration:none;
-    color:var(--text-main);
-    transition:0.3s ease;
-    font-size:0.95rem;
-}
-
-nav a:hover{
-    color:var(--primary);
-}
-
-/* =============================
-   HERO SECTION
-============================= */
-.hero{
-    min-height:90vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:0 10%;
-}
-
-.hero-content{
-    max-width:900px;
-}
-
-/* Name Title */
-.hero h1{
-    font-size:2.8rem;
-    letter-spacing:2px;
-    margin-bottom:10px;
-    color:var(--primary);
-}
-
-/* Role */
-.hero h2{
-    font-weight:normal;
-    font-size:1.3rem;
-    color:var(--text-muted);
-    margin-bottom:30px;
-}
-
-/* Coming Soon Message */
-.coming{
-    margin-top:20px;
-    font-size:1.1rem;
-    color:var(--accent);
-    letter-spacing:1px;
-    animation:blink 1.8s infinite;
-}
-
-@keyframes blink{
-    50%{opacity:0.3;}
-}
-
-/* Terminal Styled Card */
-.card{
-    margin-top:40px;
-    padding:30px;
-    background:var(--bg-card);
-    border:1px solid rgba(0,224,184,0.2);
-    border-radius:14px;
-    box-shadow:var(--border-glow);
-    text-align:left;
-}
-
-.card p{
-    margin:10px 0;
-    font-size:0.95rem;
-}
-
-.highlight{
-    color:var(--primary);
-}
-
-/* Contact Section */
-.contact{
-    margin-top:35px;
-    font-size:0.95rem;
-}
-
-.contact a{
-    color:var(--secondary);
-    text-decoration:none;
-}
-
-.contact a:hover{
-    text-decoration:underline;
-}
-
-/* Button */
-.btn{
-    display:inline-block;
-    margin-top:35px;
-    padding:12px 30px;
-    border:1px solid var(--primary);
-    color:var(--primary);
-    text-decoration:none;
-    border-radius:30px;
-    transition:0.4s ease;
-}
-
-.btn:hover{
-    background:var(--primary);
-    color:#000;
-    box-shadow:0 0 20px var(--primary);
-}
-
-/* Footer */
-footer{
-    text-align:center;
-    padding:20px;
-    border-top:1px solid rgba(0,224,184,0.15);
-    color:var(--text-muted);
-    font-size:0.85rem;
-}
-
 </style>
 </head>
-
 <body>
 
+<div class="o1 orb"></div><div class="o2 orb"></div><div class="o3 orb"></div>
+<div class="grid-bg"></div>
+<canvas id="cvs"></canvas>
+
+<!-- SVG SPRITE (icons used throughout) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="ic-check-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></symbol>
+  <symbol id="ic-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></symbol>
+  <symbol id="ic-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+  <symbol id="ic-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></symbol>
+  <symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+  <symbol id="ic-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+  <symbol id="ic-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <symbol id="ic-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
+  <symbol id="ic-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H3V4h3M18 9h3V4h-3M9 17v4m6-4v4M9 21h6"/><path d="M6 4h12v7a6 6 0 01-12 0V4z"/></symbol>
+  <symbol id="ic-bug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l1.88 1.88M14.12 3.88L16 2"/><path d="M9 7.13v-1a3.003 3.003 0 116 0v1"/><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 014-4h4a4 4 0 014 4v3c0 3.3-2.7 6-6 6z"/><path d="M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M17.47 9c1.93-.2 3.53-1.9 3.53-4M18 13h4M21 21c0-2.1-1.7-3.9-3.8-4"/></symbol>
+  <symbol id="ic-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></symbol>
+  <symbol id="ic-sat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 7L9.8 3.8a2 2 0 00-2.8 0l-2.2 2.2a2 2 0 000 2.8L8 12M7 13l-3.3 3.3a2 2 0 000 2.8l2.2 2.2a2 2 0 002.8 0L12 18"/><circle cx="15" cy="9" r="4"/><line x1="18" y1="18" x2="22" y2="22"/></symbol>
+  <symbol id="ic-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="ic-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></symbol>
+  <symbol id="ic-usb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18M10.5 10.677A5 5 0 0121 15v1h-2M5 15v1a5 5 0 009.293 2.536"/><path d="M15 3v3.5a.5.5 0 00.5.5H18"/><path d="M9 3v3.5a.5.5 0 01-.5.5H6"/><path d="M12 3v6"/></symbol>
+  <symbol id="ic-java" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></symbol>
+  <symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+</svg>
+
+<div class="wrap">
+
+<!-- ── NAV ──────────────────────────────────────────── -->
 <nav>
-    <div class="logo">HP_SEC</div>
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="https://www.linkedin.com/in/hariespalaniappan/" target="_blank">LinkedIn</a></li>
-        <li><a href="mailto:hariespalaniappan@gmail.com">Contact</a></li>
-    </ul>
+  <div class="logo">HP</div>
+  <ul class="navl">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact" class="ncta">Contact</a></li>
+  </ul>
 </nav>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>Haries Palaniappan</h1>
-        <h2>Security Analyst | Threat Intelligence | Security Operations</h2>
-
-        <div class="card">
-            <p><span class="highlight">Status:</span> Securing Digital Infrastructure</p>
-            <p><span class="highlight">Focus:</span> Network Defense, Vulnerability Management, Incident Response</p>
-            <p><span class="highlight">Mission:</span> Strengthening Security Posture Through Continuous Monitoring & Analysis</p>
-        </div>
-
-        <p class="coming">
-            Major Updates in Progress — Something Big is Coming. Portfolio Will Be Updated Soon.
-        </p>
-
-        <div class="contact">
-            <p>Email: <a href="mailto:hariespalaniappan@gmail.com">hariespalaniappan@gmail.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/hariespalaniappan/" target="_blank">
-                linkedin.com/in/hariespalaniappan
-            </a></p>
-        </div>
-
-        <a href="mailto:hariespalaniappan@gmail.com" class="btn">Get In Touch</a>
+<!-- ── HERO ─────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-layout">
+    <div class="hc">
+      <div class="hbadge"><span class="hdot"></span>Currently: Security Analyst @ Infinite Computer Solutions</div>
+      <h1 class="hname">Haries<br>Palaniappan</h1>
+      <div class="htitle" id="htitle">&nbsp;</div>
+      <p class="hdesc">Cybersecurity Engineer & Researcher with hands-on experience in red team operations, enterprise defense, and published research. Certified by Altered Security. Recognized by Microsoft &amp; Google.</p>
+      <div class="hbtns">
+        <a href="#contact" class="bp">Get In Touch<svg style="width:15px;height:15px;margin-left:2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        <a href="https://github.com/haries-dev" target="_blank" class="bs"><svg style="width:16px;height:16px"><use href="#ic-github"/></svg>GitHub Profile</a>
+      </div>
+      <div class="hstats">
+        <div class="hst"><div class="n">2.10</div><div class="l">Yrs Security Exp</div></div>
+        <div class="hst"><div class="n" data-count="11">0</div><div class="l">Projects on GitHub</div></div>
+        <div class="hst"><div class="n" data-count="20">0</div><div class="l">Awards &amp; Honors</div></div>
+        <div class="hst"><div class="n" data-count="4">0</div><div class="l">MSFT / Google Bounties</div></div>
+      </div>
     </div>
+    <div class="hphoto-outer">
+      <div class="hphoto-ring"></div>
+      <div class="hphoto-ring2"></div>
+      <div class="hphoto-wrap">
+        <div class="hphoto-glow"></div>
+        <img src="https://raw.githubusercontent.com/haries-dev/Portfolio-Docs/refs/heads/main/profile.jpeg" alt="Haries Palaniappan" loading="eager" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── ABOUT ─────────────────────────────────────────── -->
+<section id="about">
+  <div class="sh fi">
+    <div class="slbl">Who I Am</div>
+    <h2 class="stitle">Security Engineer<br>&amp; Researcher</h2>
+  </div>
+  <div class="ag">
+    <div class="acard gl fi d1">
+      <p class="atxt">IT Developer and Cybersecurity Professional with solid hands-on experience in secure system architecture, red team operations, and software development. Skilled in penetration testing, Active Directory exploitation, API security, and secure application engineering.</p>
+      <p class="atxt">From building custom security operating systems to discovering critical vulnerabilities in Microsoft and Google's infrastructure — bridging the gap between offensive testing and real-world defense.</p>
+      <div class="ahi">
+        <div class="ahi-item"><div class="ahi-ic"><svg><use href="#ic-shield"/></svg></div>CRTP Certified — Active Directory Red Team Expert</div>
+        <div class="ahi-item"><div class="ahi-ic"><svg><use href="#ic-cloud"/></svg></div>Azure Red Team Certified — Altered Security</div>
+        <div class="ahi-item"><div class="ahi-ic"><svg><use href="#ic-book"/></svg></div>Springer Research Publisher — ICDEC 2023 &amp; 2025</div>
+        <div class="ahi-item"><div class="ahi-ic"><svg><use href="#ic-trophy"/></svg></div>Smart India Hackathon 2023 National Winner</div>
+        <div class="ahi-item"><div class="ahi-ic"><svg><use href="#ic-bug"/></svg></div>Microsoft RCE + UAC Bypass Bug Bounties</div>
+        <div class="ahi-item"><div class="ahi-ic"><svg><use href="#ic-search"/></svg></div>Google Cloud P1 Bug Bounty</div>
+      </div>
+    </div>
+    <div class="acard gl fi d2">
+      <div class="sgrid">
+        <div class="sbox"><div class="n">CRTP</div><div class="l">Pwned Badge</div></div>
+        <div class="sbox"><div class="n">Azure</div><div class="l">Red Team Cert</div></div>
+        <div class="sbox"><div class="n">SIH</div><div class="l">2023 Winner</div></div>
+        <div class="sbox"><div class="n">MSFT</div><div class="l">Bug Bounty</div></div>
+        <div class="sbox"><div class="n">86.6%</div><div class="l">MSc — KEC</div></div>
+        <!-- <div class="sbox"><div class="n">ISO</div><div class="l">27001 Auditor</div></div>
+        <div class="sbox"><div class="n">NIST</div><div class="l">CSF Practitioner</div></div> -->
+        <div class="sbox"><div class="n">ISRO</div><div class="l">Project Developer</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── EXPERIENCE ────────────────────────────────────── -->
+<section id="experience">
+  <div class="sh fi">
+    <div class="slbl">Career</div>
+    <h2 class="stitle">Professional<br>Experience</h2>
+    <p class="sdesc">Spanning security operations, mobile development, healthcare data, and India's national space program.</p>
+  </div>
+  <div class="tl">
+
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="eh"><div class="etitle">Security Analyst</div><div class="ebadge bnow">● Current</div></div>
+        <div class="eco">Infinite Computer Solutions</div>
+        <div class="emeta"><span>Aug 2025 – Present · 10 mos</span><span>Full-time · Hybrid</span></div>
+        <div class="edesc">Application security, privacy, third-party risk, certifications, red teaming, and cloud security across ISO 27001, SOC 2, PCI-DSS, HITRUST audits. Risk assessments via NIST CSF and MITRE ATT&CK. DPDP Act compliance, Privacy Impact Assessments (PIA), and Third-Party Risk Management (TPRM).</div>
+        <div class="eskills"><span class="sc">ISO 27001</span><span class="sc">SOC 2</span><span class="sc">PCI-DSS</span><span class="sc">MITRE ATT&CK</span><span class="sc">Azure Security</span><span class="sc">Red Teaming</span><span class="sc">AppSec</span><span class="sc">DPDP Act</span></div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="eh"><div class="etitle">Associate Developer — Flutter App Development</div><div class="ebadge bpast">Full-time</div></div>
+        <div class="eco">Squadl Technologies</div>
+        <div class="emeta"><span>Aug 2023 – Aug 2025 · 2 yrs 1 mo</span><span>Coimbatore, TN · On-site</span></div>
+        <div class="edesc">Designed and developed cross-platform mobile applications using Flutter. Applied secure coding practices with encryption, authentication, and API security integration while optimizing app performance through code reviews.</div>
+        <div class="eskills"><span class="sc">Flutter</span><span class="sc">Dart</span><span class="sc">API Security</span><span class="sc">Encryption</span></div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="eh"><div class="etitle">Project Developer</div><div class="ebadge bpast">Freelance</div></div>
+        <div class="eco">ISRO — Indian Space Research Organization</div>
+        <div class="emeta"><span>Nov 2022 – Feb 2023 · 4 mos</span><span>Bengaluru, KA · Remote</span></div>
+        <div class="edesc">Developed the Satellite Navigation Framework using data virtualization to monitor space weather impacts on satellite navigation infrastructure. Delivered scalable solutions aligned with India's space program requirements.</div>
+        <div class="eskills"><span class="sc">Python</span><span class="sc">Data Virtualization</span><span class="sc">Space Systems</span></div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="eh"><div class="etitle">Data Analyst &amp; Cyber Security Consultant</div><div class="ebadge bint">Internship</div></div>
+        <div class="eco">Mednucleus</div>
+        <div class="emeta"><span>Jan 2022 – Jul 2023 · 1 yr 7 mos</span><span>Erode, TN · Remote</span></div>
+        <div class="edesc">Analyzed healthcare data delivering actionable business insights. Conducted security assessments, penetration testing, and compliance reviews ensuring adherence to HIPAA and GDPR standards.</div>
+        <div class="eskills"><span class="sc">Data Analysis</span><span class="sc">Pen Testing</span><span class="sc">HIPAA</span><span class="sc">GDPR</span></div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="eh"><div class="etitle">Freelancer — Cybersecurity &amp; Development</div><div class="ebadge bpast">Self-employed</div></div>
+        <div class="eco">Self-employed</div>
+        <div class="emeta"><span>Jan 2020 – Jul 2023 · 3 yrs 7 mos</span><span>Remote</span></div>
+        <div class="edesc">Delivered tailored cybersecurity, data analysis, and software development solutions across diverse industries. Vulnerability assessments, data visualization, system integrations, and risk management.</div>
+        <div class="eskills"><span class="sc">Vulnerability Assessment</span><span class="sc">Data Visualization</span><span class="sc">Risk Management</span></div>
+      </div>
+    </div>
+
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="eh"><div class="etitle">Software Developer Trainee</div><div class="ebadge bint">Internship</div></div>
+        <div class="eco">Sparkout Tech</div>
+        <div class="emeta"><span>Jul 2021 – Nov 2021 · 5 mos</span><span>Coimbatore, TN</span></div>
+        <div class="edesc">Security engineer designing secure systems across cloud, network, and application environments. Vulnerability remediation, security assessments, and policy development.</div>
+        <div class="eskills"><span class="sc">Security Engineering</span><span class="sc">Policy Development</span><span class="sc">Risk Assessment</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── SKILLS ─────────────────────────────────────────── -->
+<section id="skills">
+  <div class="sh fi">
+    <div class="slbl">Expertise</div>
+    <h2 class="stitle">Technical Skills</h2>
+  </div>
+  <div class="skillgrid">
+
+    <div class="skcat gl fi">
+      <div class="skhdr">
+        <div class="ibox" style="background:rgba(239,68,68,.09);border:1px solid rgba(239,68,68,.18);color:#fca5a5"><svg><use href="#ic-shield"/></svg></div>
+        <div class="sknm">Security Operations</div>
+      </div>
+      <div class="sktags"><span class="skt">Red Team Operations</span><span class="skt">Azure Red Teaming</span><span class="skt">CRTP / AD Exploitation</span><span class="skt">Penetration Testing</span><span class="skt">Bug Bounty</span><span class="skt">Malware Analysis</span><span class="skt">DFIR</span><span class="skt">Cyber Threat Intel</span><span class="skt">Offensive Security</span></div>
+    </div>
+
+    <div class="skcat gl fi d1">
+      <div class="skhdr">
+        <div class="ibox" style="background:rgba(99,102,241,.09);border:1px solid rgba(99,102,241,.18);color:#a5b4fc"><svg><use href="#ic-check-list"/></svg></div>
+        <div class="sknm">Compliance &amp; Governance</div>
+      </div>
+      <div class="sktags"><span class="skt">ISO 27001</span><span class="skt">SOC 2</span><span class="skt">PCI-DSS</span><span class="skt">HITRUST</span><span class="skt">NIST CSF</span><span class="skt">MITRE ATT&CK</span><span class="skt">OWASP</span><span class="skt">DPDP Act</span><span class="skt">HIPAA / GDPR</span></div>
+    </div>
+
+    <div class="skcat gl fi d2">
+      <div class="skhdr">
+        <div class="ibox" style="background:rgba(6,182,212,.09);border:1px solid rgba(6,182,212,.18);color:#67e8f9"><svg><use href="#ic-cloud"/></svg></div>
+        <div class="sknm">Cloud &amp; Infrastructure</div>
+      </div>
+      <div class="sktags"><span class="skt">Microsoft Azure</span><span class="skt">AWS</span><span class="skt">Cloud Security</span><span class="skt">AppSec Governance</span><span class="skt">API Security</span><span class="skt">TPRM</span><span class="skt">PIA</span></div>
+    </div>
+
+    <div class="skcat gl fi">
+      <div class="skhdr">
+        <div class="ibox" style="background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.18);color:#6ee7b7"><svg><use href="#ic-code"/></svg></div>
+        <div class="sknm">Development</div>
+      </div>
+      <div class="sktags"><span class="skt">Python</span><span class="skt">C#</span><span class="skt">Flutter / Dart</span><span class="skt">Java</span><span class="skt">PHP</span><span class="skt">SQL / MySQL</span><span class="skt">Solidity</span><span class="skt">Bash / Shell</span><span class="skt">HTML / CSS</span><span class="skt">VB.NET</span></div>
+    </div>
+
+    <div class="skcat gl fi d1">
+      <div class="skhdr">
+        <div class="ibox" style="background:rgba(245,158,11,.09);border:1px solid rgba(245,158,11,.18);color:#fcd34d"><svg><use href="#ic-chart"/></svg></div>
+        <div class="sknm">Data &amp; Research</div>
+      </div>
+      <div class="sktags"><span class="skt">Data Analysis</span><span class="skt">Data Visualization</span><span class="skt">Machine Learning</span><span class="skt">OSINT</span><span class="skt">Behavioral Analytics</span><span class="skt">Research Publishing</span></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── PROJECTS ───────────────────────────────────────── -->
+<section id="projects">
+  <div class="sh fi">
+    <div class="slbl">Built</div>
+    <h2 class="stitle">Notable Projects</h2>
+    <p class="sdesc">From AI-powered insider threat detection published in Springer to custom security operating systems and ISRO navigation frameworks.</p>
+  </div>
+  <div class="pgrid">
+
+    <div class="pcard gl fi">
+      <div class="ptag csp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><path d="M13 7L9.8 3.8a2 2 0 00-2.8 0l-2.2 2.2a2 2 0 000 2.8L8 12M7 13l-3.3 3.3a2 2 0 000 2.8l2.2 2.2a2 2 0 002.8 0L12 18"/><circle cx="15" cy="9" r="4"/><line x1="18" y1="18" x2="22" y2="22"/></svg>Space / ISRO</div>
+      <div class="pname">Satellite Navigation Framework</div>
+      <div class="porg">ISRO — Indian Space Research Organization · Nov 2022 – Feb 2023</div>
+      <div class="pdesc">Data virtualization framework to monitor space weather impacts on satellite navigation. Real-time ground-to-satellite communication integrity analysis.</div>
+      <div class="ptechs"><span class="tt">Python</span><span class="tt">Data Virtualization</span><span class="tt">Space Systems</span></div>
+    </div>
+
+    <div class="pcard gl fi d1">
+      <div class="ptag csec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Red Team OS</div>
+      <div class="pname">PHANTOM OS</div>
+      <div class="porg">Pentest-Based Unified Security Operating System</div>
+      <div class="pdesc">Integrates Red Team attack simulations with Blue Team defense responses in a unified framework. Real-world insights via combined offensive and defensive validation.</div>
+      <div class="ptechs"><span class="tt">Red Team</span><span class="tt">Blue Team</span><span class="tt">OS Security</span></div>
+    </div>
+
+    <div class="pcard gl fi d2">
+      <div class="ptag csec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Research Spyware</div>
+      <div class="pname">PROJECT LUCIFER</div>
+      <div class="porg">Kongu Engineering College — Authorized Pentest Research</div>
+      <div class="pdesc">Advanced immortal spyware framework for authorized penetration testing. Zero-click exploit delivery for corporate cybersecurity assessments. Recognized at national competitions.</div>
+      <div class="ptechs"><span class="tt">C#</span><span class="tt">VB.NET</span><span class="tt">Batch Files</span><span class="tt">Zero-Click</span></div>
+      <a href="https://github.com/haries-dev/Project-Lucifer" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi">
+      <div class="ptag cos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>Custom OS</div>
+      <div class="pname">SPARKOUT OS</div>
+      <div class="porg">Sparkout Tech — Windows 11 Security OS · Aug 2021 – Jan 2022</div>
+      <div class="pdesc">Highly optimized security-focused Windows 11 OS. Pre/post-ransomware protection, COMODO Firewall, no-logs VPN, Linux integration, legacy hardware support.</div>
+      <div class="ptechs"><span class="tt">Windows 11</span><span class="tt">Firewall</span><span class="tt">Anti-Ransomware</span><span class="tt">VPN</span></div>
+      <a href="https://github.com/haries-dev/Sparkout-OS" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi d1">
+      <div class="ptag csec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Hardware Defense</div>
+      <div class="pname">ADM — Advanced Defense Mechanism</div>
+      <div class="porg">Kongu Engineering College · Aug 2021 – Oct 2021</div>
+      <div class="pdesc">C# application blocking weaponized hardware hacking devices — USB Rubber Ducky and Bash Bunny — from compromising enterprise workstations.</div>
+      <div class="ptechs"><span class="tt">C#</span><span class="tt">Python</span><span class="tt">USB Defense</span></div>
+      <a href="https://github.com/haries-dev/ADM" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi d2">
+      <div class="ptag cbc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 007.07 7.07l1.71-1.71"/></svg>Blockchain</div>
+      <div class="pname">TODO List — Ethereum DApp</div>
+      <div class="porg">Decentralized Task Management · Oct – Nov 2022</div>
+      <div class="pdesc">Decentralized to-do list on Ethereum. Each task is a smart contract ensuring a tamper-proof ledger with deadlines, reminders, and shared access.</div>
+      <div class="ptechs"><span class="tt">Solidity</span><span class="tt">Ethereum</span><span class="tt">Smart Contracts</span></div>
+      <a href="https://github.com/haries-dev/TodoList-App-Ethereum-Solidity" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi">
+      <div class="ptag cos2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>OSINT</div>
+      <div class="pname">TERRORIST TRACKER TOOLKIT</div>
+      <div class="porg">Kongu Engineering College · Sep – Oct 2021</div>
+      <div class="pdesc">Sophisticated OSINT scraper automating intelligence gathering from public sources for threat actor profiling and law enforcement intelligence operations.</div>
+      <div class="ptechs"><span class="tt">OSINT</span><span class="tt">Web Scraping</span><span class="tt">Intelligence</span></div>
+      <a href="https://github.com/haries-dev/Terrorist-Tracker-Toolkit" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi d1">
+      <div class="ptag cweb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>Secure Web</div>
+      <div class="pname">BUDDY — Secure Social Media</div>
+      <div class="porg">Kongu Engineering College · Mar – May 2021</div>
+      <div class="pdesc">Security-focused social media platform with verified identity, encrypted communications, and privacy-first architecture for online community building.</div>
+      <div class="ptechs"><span class="tt">PHP</span><span class="tt">SQL</span><span class="tt">Security-First Design</span></div>
+      <a href="https://github.com/haries-dev/Buddy" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi d2">
+      <div class="ptag csec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>Anti-Piracy</div>
+      <div class="pname">ANTI PIRACY HTML SCRIPT</div>
+      <div class="porg">Kongu Engineering College · Nov 2022</div>
+      <div class="pdesc">Protects digital media via encryption, watermarking, and encoding. Disables right-click, blocks image saving, and limits content access to reduce copyright infringement.</div>
+      <div class="ptechs"><span class="tt">HTML</span><span class="tt">CSS</span><span class="tt">JavaScript</span></div>
+      <a href="https://github.com/haries-dev/Antipiracy-HTML-Script" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi">
+      <div class="ptag cos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>Java App</div>
+      <div class="pname">ATM MACHINE — Console ATM App</div>
+      <div class="porg">Kongu Engineering College · Oct 2022</div>
+      <div class="pdesc">Console-based ATM simulation in Java — cash withdrawal, balance enquiry, fund transfers, and PIN authentication with full account management.</div>
+      <div class="ptechs"><span class="tt">Java</span><span class="tt">OOP</span><span class="tt">Console App</span></div>
+      <a href="https://github.com/haries-dev/ATM-Machine-In-JAVA" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+    <div class="pcard gl fi d1">
+      <div class="ptag csp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:10px;height:10px"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>DevOps / Shell</div>
+      <div class="pname">AUTO LAMP SHELL SCRIPT</div>
+      <div class="porg">Sparkout Tech · Jul 2021</div>
+      <div class="pdesc">Automated shell script that installs and configures Laravel, Apache, MySQL, and PHP on Linux VPS/RDP with a single command — built for DevOps engineers.</div>
+      <div class="ptechs"><span class="tt">Bash</span><span class="tt">Shell Script</span><span class="tt">Linux</span><span class="tt">LAMP</span></div>
+      <a href="https://github.com/haries-dev/AUTO-LAMP-SHELL-SCRIPT" target="_blank" class="plink"><svg><use href="#ic-github"/></svg>View on GitHub</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── PUBLICATIONS ───────────────────────────────────── -->
+<section id="publications">
+  <div class="sh fi" style="text-align:center">
+    <div class="slbl">Research</div>
+    <h2 class="stitle">Published Research</h2>
+  </div>
+  <div class="pubcard gl fi">
+    <div class="pjour"><svg><use href="#ic-book"/></svg>Springer · ICDEC 2023 &amp; Springer International 2025</div>
+    <div class="ptitle2">USB-Sentinel: A Generalized AIO Software-Assisted Insider Threat Detection Framework</div>
+    <div class="pmeta">Published Feb 27, 2025 &nbsp;·&nbsp; Haries Palaniappan et al. &nbsp;·&nbsp; DOI: 10.1007/978-981-97-8476-9_29</div>
+    <div class="pdesc2">USB-Sentinel is an All-In-One software-assisted insider threat detection framework to monitor, analyze, and mitigate unauthorized USB device activities within enterprise environments. Provides real-time behavioral analysis focusing on data exfiltration, unauthorized device usage, and malware injection risks.</div>
+    <div class="pfeats">
+      <div class="pfeat">Dynamic USB event monitoring with real-time anomaly detection</div>
+      <div class="pfeat">ML-based behavioral threat analysis</div>
+      <div class="pfeat">Device whitelisting / blacklisting policy enforcement</div>
+      <div class="pfeat">Malware detection via sandboxing &amp; signature scanning</div>
+      <div class="pfeat">Enterprise-ready centralized logging and alerting</div>
+      <div class="pfeat">Prevents BadUSB, rogue devices &amp; keylogger attacks</div>
+    </div>
+    <a href="https://link.springer.com/chapter/10.1007/978-981-97-8476-9_29" target="_blank" class="springer-btn">
+      <svg><use href="#ic-book"/></svg>Read Paper on Springer<svg style="width:12px;height:12px"><use href="#ic-ext"/></svg>
+    </a>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── CERTIFICATIONS ─────────────────────────────────── -->
+<section id="certifications">
+  <div class="sh fi">
+    <div class="slbl">Credentials</div>
+    <h2 class="stitle">Licenses &amp;<br>Certifications</h2>
+  </div>
+  <div class="cgrid">
+
+    <div class="crtcard gl fi">
+      <div class="ibadge" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#fca5a5">AS</div>
+      <div class="cname">Azure Red Teaming Certificate</div>
+      <div class="ciss">Altered Security</div>
+      <div class="cdate">Issued Sep 2025</div>
+    </div>
+
+    <div class="crtcard gl fi d1">
+      <div class="ibadge" style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#fca5a5">AS</div>
+      <div class="cname">Azure Red Teaming Badge</div>
+      <div class="ciss">Altered Security</div>
+      <div class="cdate">Issued Sep 2025</div>
+      <a href="https://eu.badgr.com/public/assertions/sGEHgGOFTfK8Py4NRBagng" target="_blank" class="credlink">
+        <svg><use href="#ic-check"/></svg>Verify Credential<svg><use href="#ic-ext"/></svg>
+      </a>
+    </div>
+
+    <div class="crtcard gl fi d2">
+      <div class="ibadge" style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);color:#c4b5fd">AS</div>
+      <div class="cname">CRTP Lab Pwned Badge</div>
+      <div class="ciss">Altered Security</div>
+      <div class="cdate">Issued Jun 2025</div>
+      <a href="https://eu.badgr.com/public/assertions/YBJTrgvmQ765dgJ8yofi0A" target="_blank" class="credlink">
+        <svg><use href="#ic-check"/></svg>Verify Credential<svg><use href="#ic-ext"/></svg>
+      </a>
+    </div>
+
+    <div class="crtcard gl fi">
+      <div class="ibadge" style="background:rgba(0,120,212,.1);border:1px solid rgba(0,120,212,.2);color:#60a5fa">MS</div>
+      <div class="cname">Microsoft AI Classroom Series</div>
+      <div class="ciss">Microsoft</div>
+      <div class="cdate">Issued Jan 2021</div>
+    </div>
+
+    <div class="crtcard gl fi d1">
+      <div class="ibadge" style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#6ee7b7">Cy</div>
+      <div class="cname">DFIR Investigations &amp; Witness Testimony</div>
+      <div class="ciss">Cybrary</div>
+      <div class="cdate">Issued Nov 2020</div>
+    </div>
+
+    <div class="crtcard gl fi d2">
+      <div class="ibadge" style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#6ee7b7">Cy</div>
+      <div class="cname">Phishing Prevention Mechanisms</div>
+      <div class="ciss">Cybrary</div>
+      <div class="cdate">Issued Nov 2020</div>
+    </div>
+
+    <div class="crtcard gl fi">
+      <div class="ibadge" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc">PI</div>
+      <div class="cname">Ethical Hacking Fundamentals</div>
+      <div class="ciss">Prompt Infotech Coimbatore</div>
+      <div class="cdate">Issued Oct 2020</div>
+    </div>
+
+    <div class="crtcard gl fi d1">
+      <div class="ibadge" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc">PI</div>
+      <div class="cname">Network &amp; Network Security</div>
+      <div class="ciss">Prompt Infotech Coimbatore</div>
+      <div class="cdate">Issued Sep 2020</div>
+    </div>
+
+    <div class="crtcard gl fi d2">
+      <div class="ibadge" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:#fcd34d">C³</div>
+      <div class="cname">Ethical Hacking Level 1 &amp; Level 2</div>
+      <div class="ciss">CCube</div>
+      <div class="cdate">Issued Oct 2019</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── AWARDS ─────────────────────────────────────────── -->
+<section id="awards">
+  <div class="sh fi">
+    <div class="slbl">Recognition</div>
+    <h2 class="stitle">Honors &amp; Awards</h2>
+    <p class="sdesc">Acknowledged by Microsoft, Google, and the Government of India for exceptional contributions to global cybersecurity.</p>
+  </div>
+  <div class="awgrid">
+
+    <div class="awcard gl fi">
+      <div class="ibadge" style="background:rgba(0,120,212,.1);border:1px solid rgba(0,120,212,.2);color:#60a5fa;font-size:.62rem">MS</div>
+      <div><div class="awtitle">RCE Bug — Microsoft Hall of Fame</div><div class="awiss">Microsoft Security Research Team</div><div class="awdate">Jun 2024</div><div class="awdesc">Discovered critical Remote Code Execution in Microsoft Office. Accepted and patched globally by Microsoft.</div></div>
+    </div>
+
+    <div class="awcard gl fi d1">
+      <div class="ibadge" style="background:rgba(0,120,212,.1);border:1px solid rgba(0,120,212,.2);color:#60a5fa;font-size:.62rem">MS</div>
+      <div><div class="awtitle">UAC Bypass — Microsoft Acknowledgment</div><div class="awiss">Microsoft Security Research Team</div><div class="awdate">May 2024</div><div class="awdesc">Identified critical UAC Bypass vulnerability. Accepted and resolved by Microsoft globally.</div></div>
+    </div>
+
+    <div class="awcard gl fi d2">
+      <div class="ibadge" style="background:rgba(234,67,53,.1);border:1px solid rgba(234,67,53,.2);color:#f87171;font-size:.75rem">G</div>
+      <div><div class="awtitle">P1 Bug — Google Cloud Acknowledgment</div><div class="awiss">Google Security Team</div><div class="awdate">Jul 2022</div><div class="awdesc">P1-severity security bug on Google Cloud official website, recognized by the Google Security Team.</div></div>
+    </div>
+
+    <div class="awcard gl fi">
+      <div class="ibox" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:#fcd34d"><svg><use href="#ic-trophy"/></svg></div>
+      <div><div class="awtitle">Winner — Smart India Hackathon 2023</div><div class="awiss">Government of India</div><div class="awdate">Dec 2023</div><div class="awdesc">National winner at SIH 2023 with Team Twincord — India's largest national hackathon.</div></div>
+    </div>
+
+    <div class="awcard gl fi d1">
+      <div class="ibox" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:#fcd34d"><svg><use href="#ic-award"/></svg></div>
+      <div><div class="awtitle">Best Mentor Award — SIH 2023</div><div class="awiss">Government of India · Squadl Technologies</div><div class="awdate">Dec 2023</div><div class="awdesc">Awarded Best Mentor for guiding Team Twincord in innovative cybersecurity solutions under national competition conditions.</div></div>
+    </div>
+
+    <div class="awcard gl fi d2">
+      <div class="ibox" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:#fcd34d"><svg><use href="#ic-star"/></svg></div>
+      <div><div class="awtitle">Finalist — Kavach Cybersecurity Hackathon 2023</div><div class="awiss">Ministry of Home Affairs &amp; Ministry of Education</div><div class="awdate">Aug 2023</div><div class="awdesc">National finalist in India's premier government cybersecurity hackathon for digital security innovation.</div></div>
+    </div>
+
+    <div class="awcard gl fi">
+      <div class="ibox" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc"><svg><use href="#ic-award"/></svg></div>
+      <div><div class="awtitle">Best Project &amp; Co-Curricular Award — KEC 2023</div><div class="awiss">Kongu Engineering College</div><div class="awdate">Apr 2023</div><div class="awdesc">Dual recognition for project innovation excellence and holistic co-curricular achievements at graduation.</div></div>
+    </div>
+
+    <div class="awcard gl fi d1">
+      <div class="ibox" style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);color:#fcd34d"><svg><use href="#ic-star"/></svg></div>
+      <div><div class="awtitle">Finalist — CCTNS Hackathon &amp; Cyber Challenge</div><div class="awiss">National Crime Records Bureau, New Delhi</div><div class="awdate">Jun 2022</div><div class="awdesc">Selected finalist at CCTNS Cybersecurity Hackathon, one of India's largest law enforcement security competitions.</div></div>
+    </div>
+
+    <div class="awcard gl fi d2">
+      <div class="ibox" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc"><svg><use href="#ic-trophy"/></svg></div>
+      <div><div class="awtitle">1st Prize — Internal Hackathon 2022 (SIH + Ehorizon)</div><div class="awiss">Kongu Engineering College</div><div class="awdate">Mar 2022</div><div class="awdesc">First Prize for Sparkout OS — customized Windows 11 defense OS with ransomware protection and no-logs VPN.</div></div>
+    </div>
+
+    <div class="awcard gl fi">
+      <div class="ibox" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc"><svg><use href="#ic-bug"/></svg></div>
+      <div><div class="awtitle">Bug Bounties — Examly, Macappstudio, Pepul, KEC</div><div class="awiss">Multiple Companies &amp; Institutions</div><div class="awdate">2020 – 2022</div><div class="awdesc">Security bugs reported and acknowledged by CEOs and security teams at multiple companies and institutions.</div></div>
+    </div>
+
+    <div class="awcard gl fi d1">
+      <div class="ibox" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);color:#a5b4fc"><svg><use href="#ic-award"/></svg></div>
+      <div><div class="awtitle">Best Student Projects Award — IIC KEC 2021</div><div class="awiss">Kongu Engineering College</div><div class="awdate">Aug 2021</div><div class="awdesc">Recognized for Buddy (secure social media) and ADM (USB hardware defense) — first software product milestones.</div></div>
+    </div>
+
+    <div class="awcard gl fi d2">
+      <div class="ibox" style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.2);color:#6ee7b7"><svg><use href="#ic-star"/></svg></div>
+      <div><div class="awtitle">Third Prize — Ideathon 2022 &amp; Prototype Expo 2023</div><div class="awiss">Kongu Engineering College</div><div class="awdate">2022 – 2023</div><div class="awdesc">Recognized for Project Lucifer — advanced spyware framework for penetration testing and military-grade security research.</div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── EDUCATION ──────────────────────────────────────── -->
+<section id="education">
+  <div class="sh fi">
+    <div class="slbl">Academic</div>
+    <h2 class="stitle">Education</h2>
+  </div>
+  <div class="tl" style="max-width:680px">
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="etitle">Master of Science — Computer Software Engineering</div>
+        <div class="eco">Kongu Engineering College</div>
+        <div class="emeta"><span>May 2018 – May 2023</span><span>Grade: 86.6%</span></div>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="etitle">Higher Secondary — Computer Science</div>
+        <div class="eco">EHKN School</div>
+        <div class="emeta"><span>Mar 2016 – Mar 2018</span><span>Grade: 72.7%</span></div>
+      </div>
+    </div>
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="ec gl">
+        <div class="etitle">SSLC — Computer Science</div>
+        <div class="eco">URC Palaniammal Matric Higher Secondary School</div>
+        <div class="emeta"><span>Mar 2015 – Mar 2016</span><span>Grade: 89.4%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── VOLUNTEER ──────────────────────────────────────── -->
+<section id="volunteer">
+  <div class="sh fi">
+    <div class="slbl">Community</div>
+    <h2 class="stitle">Volunteer &amp;<br>Leadership</h2>
+  </div>
+  <div class="vgrid">
+    <div class="vcard gl fi"><div class="vrole">Industrial Mentor</div><div class="vorg">Smart India Hackathon</div><div class="vmeta">Aug 2023 – Dec 2023 · 5 mos</div><div class="vdesc">Mentored Team Twincord as industrial cybersecurity expert, guiding innovative solutions for national security challenges at India's largest hackathon.</div><span class="vcause">Education</span></div>
+    <div class="vcard gl fi d1"><div class="vrole">Student Mentor</div><div class="vorg">Kavach Hackathon</div><div class="vmeta">May 2022 – Mar 2023 · 11 mos</div><div class="vdesc">Guided hackathon participants, fostering growth and innovation in national-level cybersecurity challenges.</div><span class="vcause">Science &amp; Technology</span></div>
+    <div class="vcard gl fi d2"><div class="vrole">Product Developer — Hospital Management</div><div class="vorg">COVID War Room · Erode Hospitals</div><div class="vmeta">Mar 2020 – Apr 2021 · 1 yr 2 mos</div><div class="vdesc">Developed Bed &amp; Patient Management software for the COVID War Room, contributing to pandemic response infrastructure across Erode hospitals.</div><span class="vcause">Health</span></div>
+    <div class="vcard gl fi"><div class="vrole">Co-Founder &amp; Fundraising Volunteer</div><div class="vorg">Feed Me — Food Distribution NGO</div><div class="vmeta">Mar 2020 – Jul 2022 · 2 yrs 5 mos</div><div class="vdesc">Co-founded Feed Me to distribute food to those in need during COVID — disaster and humanitarian relief across the community.</div><span class="vcause">Disaster Relief</span></div>
+    <div class="vcard gl fi d1"><div class="vrole">Student Coordinator</div><div class="vorg">Institution's Innovation Council (IIC)</div><div class="vmeta">Jan 2020 – Jan 2021 · 1 yr 1 mo</div><div class="vdesc">Drove innovation culture, fostered collaboration, and inspired peers to embrace emerging technologies and entrepreneurship.</div><span class="vcause">Science &amp; Technology</span></div>
+    <div class="vcard gl fi d2"><div class="vrole">Club Member</div><div class="vorg">Self Development Cell (SDC)</div><div class="vmeta">Jan 2018 – Jan 2019 · 1 yr 1 mo</div><div class="vdesc">Active contributor to a community dedicated to personal growth, learning, and empowering peers to reach new heights.</div><span class="vcause">Social Services</span></div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ── CONTACT ────────────────────────────────────────── -->
+<section id="contact">
+  <div class="ctcard gl fi">
+    <div class="slbl">Let's Connect</div>
+    <h2 class="stitle" style="margin-bottom:14px">Let's Connect</h2>
+    <p style="color:var(--t2);font-size:1rem;line-height:1.78;max-width:420px;margin:0 auto">Open to security consulting, red team engagements, research collaboration, and conversations about the next frontier in cybersecurity.</p>
+    <div class="ctlinks">
+      <a href="https://www.linkedin.com/in/hariespalaniappan" target="_blank" class="cl">
+        <svg><use href="#ic-linkedin"/></svg>LinkedIn
+      </a>
+      <a href="mailto:hariespalaniappan@gmail.com" class="cl">
+        <svg><use href="#ic-mail"/></svg>hariespalaniappan@gmail.com
+      </a>
+      <a href="https://github.com/haries-dev" target="_blank" class="cl">
+        <svg><use href="#ic-github"/></svg>haries-dev
+      </a>
+    </div>
+    <p style="margin-top:22px;font-size:.76rem;color:var(--t3)">Tamil Nadu, India &nbsp;·&nbsp; English &amp; Tamil — Full Professional Proficiency</p>
+  </div>
 </section>
 
 <footer>
-    © 2026 Haries Palaniappan | Professional Cybersecurity Portfolio
+  <p>Haries Palaniappan &nbsp;·&nbsp; Made with <span>♥</span> &nbsp;·&nbsp; <span id="yr"></span></p>
+  <p style="margin-top:4px;font-size:.72rem">Security Analyst · CRTP · Azure Red Team · Springer Researcher · SIH 2023 Winner · Microsoft &amp; Google Bug Bounty</p>
 </footer>
 
+</div><!-- .wrap -->
+
+<script>
+// ── Typing effect ─────────────────────────────────────
+const roles=['Security Analyst','Azure Red Team Operator','CRTP — AD Fully Pwned','Bug Bounty Hunter (MSFT · Google)','Springer Research Publisher','SIH 2023 National Winner'];
+let ri=0,ci=0,del=false;
+const tel=document.getElementById('htitle');
+function type(){
+  const cur=roles[ri];
+  if(del){ci--;tel.textContent=cur.substring(0,ci);if(ci===0){del=false;ri=(ri+1)%roles.length;}setTimeout(type,55);}
+  else{ci++;tel.textContent=cur.substring(0,ci);if(ci===cur.length){del=true;setTimeout(type,2200);}else setTimeout(type,85);}
+}
+type();
+
+// ── Count-up ──────────────────────────────────────────
+function countUp(el,target,dur=1400){
+  let s=0,step=target/(dur/16);
+  const tick=()=>{s+=step;el.textContent=Math.min(Math.round(s),target)+'+';if(s<target)requestAnimationFrame(tick);};
+  requestAnimationFrame(tick);
+}
+
+// ── Intersection Observer ─────────────────────────────
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      e.target.querySelectorAll('[data-count]').forEach(el=>countUp(el,parseInt(el.dataset.count)));
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.fi,.ti').forEach(el=>io.observe(el));
+
+// Hero count-up on load
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.querySelectorAll('#hero [data-count]').forEach(el=>countUp(el,parseInt(el.dataset.count)));
+  },600);
+});
+
+// ── Particle + Wave canvas ────────────────────────────
+const cvs=document.getElementById('cvs');
+const ctx=cvs.getContext('2d');
+let W,H,pts=[],mouse={x:-999,y:-999},tick=0;
+function resize(){W=cvs.width=innerWidth;H=cvs.height=innerHeight;}
+resize();
+window.addEventListener('resize',resize);
+window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+window.addEventListener('mouseleave',()=>{mouse.x=-999;mouse.y=-999;});
+
+class Pt{
+  constructor(){this.reset(true);}
+  reset(init){
+    this.x=Math.random()*W;
+    this.y=init?Math.random()*H:Math.random()<.5?-5:H+5;
+    this.r=Math.random()*1.5+.4;
+    this.bvx=(Math.random()-.5)*.3;
+    this.bvy=(Math.random()-.5)*.3;
+    this.vx=this.bvx;this.vy=this.bvy;
+    this.a=Math.random()*.28+.07;
+    this.phase=Math.random()*Math.PI*2;
+    this.freq=Math.random()*.012+.006;
+    const p=Math.random();
+    this.c=p<.5?'#6366f1':p<.8?'#06b6d4':'#8b5cf6';
+  }
+  upd(t){
+    // gentle sine drift
+    this.vx=this.bvx+Math.sin(t*this.freq+this.phase)*.18;
+    this.vy=this.bvy+Math.cos(t*this.freq*1.3+this.phase)*.14;
+    // mouse repulsion
+    const mdx=this.x-mouse.x,mdy=this.y-mouse.y;
+    const md=Math.sqrt(mdx*mdx+mdy*mdy);
+    if(md<110&&md>0){const f=(110-md)/110*1.4;this.vx+=mdx/md*f;this.vy+=mdy/md*f;}
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<-10||this.x>W+10||this.y<-10||this.y>H+10)this.reset(false);
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=this.c;ctx.globalAlpha=this.a;ctx.fill();
+  }
+}
+for(let i=0;i<110;i++)pts.push(new Pt());
+
+// wave path helper
+function drawWave(yBase,amp,freq,spd,col,alpha,lw){
+  ctx.beginPath();
+  for(let x=0;x<=W;x+=3){
+    const y=yBase+Math.sin(x*freq+tick*spd)*amp+Math.sin(x*freq*.6+tick*spd*1.4)*amp*.45;
+    x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.strokeStyle=col;ctx.globalAlpha=alpha;ctx.lineWidth=lw;ctx.stroke();
+}
+
+function anim(){
+  ctx.clearRect(0,0,W,H);
+  tick++;
+
+  // background waves
+  drawWave(H*.72,28,.0042,0.38,'#6366f1',.045,1.2);
+  drawWave(H*.76,22,.0055,0.28,'#06b6d4',.038,1.0);
+  drawWave(H*.80,18,.0035,0.48,'#8b5cf6',.03,0.9);
+  drawWave(H*.28,20,.005,0.32,'#6366f1',.025,0.8);
+
+  // particles + connections
+  for(let i=0;i<pts.length;i++){
+    pts[i].upd(tick);pts[i].draw();
+    for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=dx*dx+dy*dy;
+      if(d<8100){
+        const dist=Math.sqrt(d),t2=1-dist/90;
+        const grd=ctx.createLinearGradient(pts[i].x,pts[i].y,pts[j].x,pts[j].y);
+        grd.addColorStop(0,pts[i].c);grd.addColorStop(1,pts[j].c);
+        ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.strokeStyle=grd;ctx.globalAlpha=.038*t2*t2;ctx.lineWidth=.6;ctx.stroke();
+      }
+    }
+  }
+
+  // mouse aura
+  if(mouse.x>0){
+    const mg=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,90);
+    mg.addColorStop(0,'rgba(99,102,241,.08)');mg.addColorStop(1,'rgba(99,102,241,0)');
+    ctx.beginPath();ctx.arc(mouse.x,mouse.y,90,0,Math.PI*2);
+    ctx.fillStyle=mg;ctx.globalAlpha=1;ctx.fill();
+  }
+
+  requestAnimationFrame(anim);
+}
+anim();
+
+// ── Dynamic year ──────────────────────────────────────
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+// ── Nav opacity on scroll ─────────────────────────────
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background=
+    scrollY>40?'rgba(3,4,10,.97)':'rgba(3,4,10,.85)';
+});
+</script>
 </body>
 </html>
