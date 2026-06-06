@@ -223,6 +223,23 @@ footer span{color:#ef4444}
 
 /* footer year not red */
 footer #yr{color:inherit}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── RESUME MODAL ───────────────────────────────────── */
+.roverlay{position:fixed;inset:0;z-index:3000;background:rgba(3,4,10,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .25s}
+.roverlay.open{opacity:1;pointer-events:all}
+.rmodal{width:min(960px,100%);height:min(90vh,880px);border-radius:20px;border:1px solid rgba(255,255,255,.1);background:#0b0c16;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 32px 100px rgba(0,0,0,.7);transform:scale(.96) translateY(16px);transition:transform .28s cubic-bezier(.16,1,.3,1)}
+.roverlay.open .rmodal{transform:scale(1) translateY(0)}
+.rmodal-hdr{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0;gap:12px}
+.rmodal-title{display:flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--t1)}
+.rmodal-title svg{width:16px;height:16px;color:#a5b4fc;flex-shrink:0}
+.rmodal-actions{display:flex;align-items:center;gap:8px}
+.rbtn-dl{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:8px;background:var(--g1);color:#fff;font-size:.77rem;font-weight:600;border:none;cursor:pointer;transition:.2s;white-space:nowrap}
+.rbtn-dl:hover{opacity:.85;transform:translateY(-1px)}
+.rbtn-dl svg{width:14px;height:14px}
+.rbtn-close{width:30px;height:30px;border-radius:7px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--t2);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0;line-height:1}
+.rbtn-close:hover{background:rgba(239,68,68,.14);border-color:rgba(239,68,68,.3);color:#fca5a5}
+.rmodal-frame{flex:1;width:100%;border:none;background:#fff;display:block}
 
 @media(max-width:900px){
   .hero-layout{flex-direction:column-reverse;gap:32px;text-align:center}
@@ -276,6 +293,8 @@ footer #yr{color:inherit}
   <symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
   <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></symbol>
   <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
 </svg>
 
 <div class="wrap">
@@ -288,6 +307,7 @@ footer #yr{color:inherit}
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#awards">Awards</a></li>
+    <li><a href="javascript:void(0)" onclick="openResume()">Resume</a></li>
     <li><a href="#contact" class="ncta">Contact</a></li>
   </ul>
 </nav>
@@ -302,6 +322,8 @@ footer #yr{color:inherit}
       <p class="hdesc">Cybersecurity Engineer & Researcher with hands-on experience in red team operations, enterprise defense, and published research. Certified by Altered Security. Recognized by Microsoft &amp; Google.</p>
       <div class="hbtns">
         <a href="#contact" class="bp">Get In Touch<svg style="width:15px;height:15px;margin-left:2px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        <a href="javascript:void(0)" onclick="openResume()" class="bs"><svg style="width:16px;height:16px"><use href="#ic-eye"/></svg>View Resume</a>
+        <a href="javascript:void(0)" onclick="downloadResume(this)" class="bs"><svg style="width:16px;height:16px"><use href="#ic-download"/></svg>Download CV</a>
         <a href="https://github.com/haries-dev" target="_blank" class="bs"><svg style="width:16px;height:16px"><use href="#ic-github"/></svg>GitHub Profile</a>
       </div>
       <div class="hstats">
@@ -867,6 +889,26 @@ footer #yr{color:inherit}
   <p style="margin-top:4px;font-size:.72rem">Security Analyst · CRTP · Azure Red Team · Springer Researcher · SIH 2023 Winner · Microsoft &amp; Google Bug Bounty</p>
 </footer>
 
+<!-- ── RESUME MODAL ──────────────────────────────────── -->
+<div id="resumeModal" class="roverlay" role="dialog" aria-modal="true" aria-label="Resume viewer">
+  <div class="rmodal">
+    <div class="rmodal-hdr">
+      <div class="rmodal-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Haries Palaniappan — Resume
+      </div>
+      <div class="rmodal-actions">
+        <button class="rbtn-dl" id="modalDlBtn" onclick="downloadResume(this)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </button>
+        <button class="rbtn-close" onclick="closeResume()" aria-label="Close">&#x2715;</button>
+      </div>
+    </div>
+    <iframe id="resumeFrame" class="rmodal-frame" title="Resume" allowfullscreen></iframe>
+  </div>
+</div>
+
 </div><!-- .wrap -->
 
 <script>
@@ -996,6 +1038,42 @@ function anim(){
   requestAnimationFrame(anim);
 }
 anim();
+
+// ── Resume modal ──────────────────────────────────────
+const PDF_RAW='https://raw.githubusercontent.com/haries-dev/Portfolio-Docs/main/Haries_Palaniappan_Resume_Updated.pdf';
+const PDF_VIEWER='https://docs.google.com/viewer?url='+encodeURIComponent(PDF_RAW)+'&embedded=true';
+
+function openResume(){
+  const modal=document.getElementById('resumeModal');
+  const frame=document.getElementById('resumeFrame');
+  if(!frame.src)frame.src=PDF_VIEWER;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeResume(){
+  document.getElementById('resumeModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('resumeModal').addEventListener('click',function(e){if(e.target===this)closeResume();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeResume();});
+
+async function downloadResume(btn){
+  const orig=btn.innerHTML;
+  btn.innerHTML='<svg style="width:14px;height:14px;animation:spin .8s linear infinite" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-6.22-8.56"/></svg> Downloading…';
+  btn.style.pointerEvents='none';
+  try{
+    const res=await fetch(PDF_RAW);
+    if(!res.ok)throw new Error();
+    const blob=await res.blob();
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='Haries_Palaniappan_Resume.pdf';
+    document.body.appendChild(a);a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }catch(e){window.open(PDF_RAW,'_blank');}
+  finally{btn.innerHTML=orig;btn.style.pointerEvents='';}
+}
 
 // ── Dynamic year ──────────────────────────────────────
 document.getElementById('yr').textContent=new Date().getFullYear();
